@@ -91,6 +91,6 @@
             }
         </mat-form-field>
     </div>
-    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="sendData()">Enviar datos</button>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="edit ? updateData() : sendData()">{{edit ? 'Actualizar': 'Añadir'}}</button>
    
 </form>

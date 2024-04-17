@@ -11,7 +11,7 @@
         </p>
     </mat-card-content>
     <mat-card-actions class="flex gap-4">
-        <a mat-flat-button [routerLink]="['/food/form', food.id]"  color="accent">Actualizar</a>
+        <a mat-flat-button [routerLink]="['/food/form',food.id]"  color="accent">Actualizar</a>
         <button mat-flat-button  color="warn" (click)="openDialog(food)">Borrar</button>
         <a mat-flat-button [routerLink]="['/food/details-food',food.id]" color="primary"  extended>
             Ver
