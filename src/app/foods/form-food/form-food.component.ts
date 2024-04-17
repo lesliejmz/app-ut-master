@@ -82,6 +82,7 @@ public updateData(){
         price: price
       };
      //pasando comida al servicio para actualizar
+     console.log(comida);
      this.serviceFood.addFood(comida).subscribe({
       next:(value) => (this.food = value),
       error:(e)=> console.error(e),
