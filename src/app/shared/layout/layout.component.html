@@ -1,0 +1,41 @@
+
+<mat-toolbar [color]="'accent'">
+    <button mat-icon-button (click)="snav.toggle()"  aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+    <span class="flex flex-auto"></span>
+    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+<!--- CONTENEDOR Y SIDE BAR-->
+  <mat-drawer-container class="w-full h-full pt-10">
+    <mat-drawer mode="side" #snav class="w-60 px-2 pt-16">
+        <!-- MENU DE OPCIONES -->
+
+        <mat-nav-list>
+          @for (link of links; track link) {
+            <mat-list-item [routerLink]="link.routerLink">
+              <mat-icon  matListItemIcon>{{link.icon}}</mat-icon>
+               <a matListItemTitle>{{link.label}}</a>
+            </mat-list-item>
+          }
+        </mat-nav-list>
+
+
+    </mat-drawer>
+    <mat-drawer-content class="px-10">
+        <!-- RUTAS -->
+        <ng-content></ng-content>
+    
+    </mat-drawer-content>
+  </mat-drawer-container>
+
+  
+ 
+
+  

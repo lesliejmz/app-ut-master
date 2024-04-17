@@ -1,0 +1,96 @@
+<div class="flex flex-row gap-6 w-full justify-center items-center">
+
+<form [formGroup]="form" class="w-1/2 p-4">
+    <button mat-icon-button [routerLink]="'/food/food-list'">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+
+
+    <h1 class="text-2xl text-black font-bold pb-6"> {{edit ? 'Editar comida' : 'Añadir nueva Comida'}}</h1>
+
+    <!-- CAMPO DE NOMBRE  -->
+    <div class="example-container pb-2">
+        <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="ejem.Pizza" formControlName="name" required>
+            @if (name?.invalid && (name?.dirty || name?.touched)) {
+            <mat-error>
+                @if (name?.hasError('required')) {
+                <span class="text-xs">campo es requerido </span>
+                }
+            </mat-error>
+            }
+        </mat-form-field>
+    </div>
+    <!-- CAMPO DE DESCRIPCIÓN  -->
+    <div class="example-container pb-2">
+        <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Descripción</mat-label>
+            <textarea matInput placeholder="ejem.Pizza" formControlName="description" required></textarea>
+            @if (description?.invalid && (description?.dirty || description?.touched)) {
+            <mat-error>
+                @if (description?.hasError('required')) {
+                <span class="text-xs">campo es requerido </span>
+                }
+                @if (description?.hasError('minlength')) {
+                <span class="text-xs"> Debe contener máximo {{description?.getError('minlength').requiredLength}}
+                    caracteres, tienen {{description?.getError('minlength').actualLength}} </span>
+                }
+            </mat-error>
+            }
+        </mat-form-field>
+    </div>
+    <!-- CAMPO DE IMAGEN  -->
+    <div class="example-container pb-2">
+        <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Imagen</mat-label>
+            <input matInput placeholder="ejem.Pizza" formControlName="image" required>
+            @if (image?.invalid && (image?.dirty || image?.touched)) {
+            <mat-error>
+                @if (image?.hasError('required')) {
+                <span class="text-xs">campo es requerido </span>
+                }
+            </mat-error>
+            }
+        </mat-form-field>
+    </div>
+    <!-- CAMPO DE CATEGORÍA  -->
+    <div class="example-container pb-2">
+        <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Categoría</mat-label>
+            <mat-select formControlName="category">
+                <mat-option value="food">Comida</mat-option>
+                <mat-option value="drink">Bebida</mat-option>
+            </mat-select>
+            @if (category?.invalid && (category?.dirty || category?.touched)) {
+            <mat-error>
+                @if (category?.hasError('required')) {
+                <span class="text-xs">campo es requerido </span>
+                }
+            </mat-error>
+            }
+        </mat-form-field>
+    </div>
+    <!-- CAMPO DE PRECIO  -->
+    <div class="example-container pb-2">
+        <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Precio</mat-label>
+            <input matInput type="number" placeholder="0" formControlName="price" class="right-align" required>
+            <span matTextPrefix>$&nbsp;</span>
+            <span matTextSuffix>.00</span>
+            @if (price?.invalid && (price?.dirty || price?.touched)) {
+            <mat-error>
+                @if (price?.hasError('required')) {
+                <span class="text-xs">campo es requerido </span>
+                }
+                @if (price?.hasError('min')) {
+                    <span class="text-xs">El valor minimo es de {{price?.getError('min').min}}, el valor actual es {{price?.getError('min').actual}}</span>
+                }
+            </mat-error>
+            }
+        </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="sendData()">Enviar datos</button>
+   
+</form>
